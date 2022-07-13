@@ -1,5 +1,7 @@
-import { Box, Flex, Collapse, Heading } from '@chakra-ui/react'
+import { Box, Collapse } from '@chakra-ui/react'
 import { useCurrentRoute } from 'state/currentRouteState'
+import { AddVoucher } from 'routes/AddVoucher'
+import { Statistics } from 'routes/Statistics'
 
 export const Content: React.FC = () => {
   const [currentRoute] = useCurrentRoute()
@@ -7,14 +9,10 @@ export const Content: React.FC = () => {
   return (
     <Box h='200vh' p='70px'>
       <Collapse in={'add_voucher' === currentRoute} animateOpacity>
-        <Flex direction='column'>
-          <Heading>Add Voucher</Heading>
-        </Flex>
+        <AddVoucher />
       </Collapse>
       <Collapse in={'statistics' === currentRoute} animateOpacity>
-        <Flex direction='column'>
-          <Heading>Statistics</Heading>
-        </Flex>
+        <Statistics />
       </Collapse>
     </Box>
   )

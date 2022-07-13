@@ -1,5 +1,6 @@
 import { Box, Flex, Fade } from '@chakra-ui/react'
 import { useCurrentRoute } from 'state/currentRouteState'
+import { useLogout } from 'state/authState'
 
 const routes = [
   { key: 'add_voucher', label: 'Add Voucher' },
@@ -25,10 +26,11 @@ const Item = ({ selected, label, onClick }: ItemProps) => {
 
 export const Sidebar: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useCurrentRoute()
+  const logout = useLogout()
 
   return (
-    <Box w='300px' h='100vh' bg='#18181b' p='30px' pos='sticky' top={0} left={0}>
-      <Flex direction='column' gap='16px'>
+    <Box w='300px' h='100vh' bg='#18181b' p='30px' pos='sticky' top='0' left='0'>
+      <Flex direction='column' gap='16px' h='100%'>
         <Box fontSize='60px'>💴</Box>
         {routes.map(route => (
           <Item 
@@ -38,6 +40,13 @@ export const Sidebar: React.FC = () => {
             onClick={() => setCurrentRoute(route.key)}
             />
         ))}
+        <Box flexGrow='1' />
+        <Box cursor='pointer' onClick={logout}>
+          <Flex gap='10px' alignItems='center'>
+            <Box fontSize='20px'></Box>
+            <Box fontSize='16px'>Logout</Box>
+          </Flex>
+        </Box>
       </Flex>
     </Box>
   )
